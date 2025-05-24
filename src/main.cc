@@ -15,5 +15,5 @@ Tuple_t &&project(Tuple_t &&e, Tuple_t &&p) {
 int main() {
     Tuple_t environment { .x = 0, .z = 0, .y = 0, .w = 1 };
     Tuple_t projectile { .x = 0, .z = 0, .y = 0, .w = 0 };
-    delta(environment, projectile);
+    project(environment, projectile);
 }
