@@ -12,8 +12,8 @@ typedef struct Tuple_t {
 
 // My functions
 
-const bool &epsilon_fnb(float &&a, float &&b) {
-    const float &&EPSILON = 0.00001f;
+const bool &epsilon_fnb(float a, float b) {
+    const float EPSILON = 0.00001f;
 
     if (std::fabsf(a) < EPSILON && std::fabsf(b) < EPSILON) {
         return true;
@@ -22,16 +22,17 @@ const bool &epsilon_fnb(float &&a, float &&b) {
     return false;
 }
 
-const Tuple_t &tuple_toas(float &&x, float &&y, float &&z, float &&w) {
-    Tuple_t *tuple { .x = x, .y = y, .z = z, .w = w };
+const Tuple_t tuple_toas(float x, float y, float z, float w) {
+    Tuple_t tuple { .x = x, .y = y, .z = z, .w = w };
+    Tuple_t t2 { 0 };
 
-    if (epsilon_fnb(x, y) != true) return nullptr;
-    if (epsilon_fnb(z, w) != true) return nullptr;
+    if (epsilon_fnb(x, y) != true) return t2;
+    if (epsilon_fnb(z, w) != true) return t2;
 
-    return &tuple;
+    return tuple;
 }
 
-const Tuple_t &point_toas(float &&x, float &&y, float &&z, float &&w) {
+const Tuple_t &point_toas(float x, float y, float z, float w) {
     if (w != 0.0f) return nullptr;
     w = 1.0f;
     Tuple_t point = { .x = x, .y = y, .z = z, .w = w };
@@ -39,7 +40,7 @@ const Tuple_t &point_toas(float &&x, float &&y, float &&z, float &&w) {
     return point;
 }
 
-const Tuple_t &vector_toas(float &&x, float &&y, float &&z, float &&w) {
+const Tuple_t &vector_toas(float x, float y, float z, float w) {
     if (w != 1.0f) return nullptr;
     w = 0.0f;
     Tuple_t vector = { .x = x, .y = y, .z = z, .w = w };
@@ -47,7 +48,7 @@ const Tuple_t &vector_toas(float &&x, float &&y, float &&z, float &&w) {
     return vector;
 }
 
-const Tuple_t &tuple_sumf(Tuple_t &&a, Tuple_t &&b) {
+const Tuple_t &tuple_sumf(Tuple_t a, Tuple_t b) {
     auto c = a + b; // NOTE: it's okay to have values greater than '1'
     // 'w' can be used to indicate change in velocity from 'point' to 'vector'
 
@@ -61,7 +62,7 @@ const Tuple_t &tuple_sumf(Tuple_t &&a, Tuple_t &&b) {
     return c;
 }
 
-const Tuple_t &tuple_scalef(Tuple_t &&a, Tuple_t &&b) {
+const Tuple_t &tuple_scalef(Tuple_t a, Tuple_t b) {
     auto c = a * b; // NOTE: it's okay to have values greater than '1'
     // 'w' can be used to indicate change in velocity from 'point' to 'vector'
 
@@ -75,7 +76,7 @@ const Tuple_t &tuple_scalef(Tuple_t &&a, Tuple_t &&b) {
     return c;
 }
 
-const Tuple_t &tuple_divf(Tuple_t &&a, Tuple_t &&b) {
+const Tuple_t &tuple_divf(Tuple_t a, Tuple_t b) {
     auto c = a / b; // NOTE: it's okay to have values greater than '1'
     // 'w' can be used to indicate change in velocity from 'point' to 'vector'
 
@@ -89,11 +90,11 @@ const Tuple_t &tuple_divf(Tuple_t &&a, Tuple_t &&b) {
     return c;
 }
 
-const int tuple_magnf(Tuple_t &&vector) {
+const int tuple_magnf(Tuple_t vector) {
     return std::sqrtf(vector.x + vector.y + vector.z);
 }
 
-const Tuple_t tuple_normalf(Tuple_t &&vector) {
+const Tuple_t tuple_normalf(Tuple_t vector) {
     return tuple_toas(vector.x / tuple_magnf(vector),
                       vector.x / tuple_magnf(vector),
                       vector.y / tuple_magnf(vector),
@@ -101,14 +102,14 @@ const Tuple_t tuple_normalf(Tuple_t &&vector) {
                       vector.w / tuple_magnf(vector));
 }
 
-const float tuple_dotf(Tuple_t &&va, Tuple_t &&vb) {
+const float tuple_dotf(Tuple_t va, Tuple_t vb) {
     return va.x * vb.x +
            va.y * vb.y +
            va.z * vb.z +
            va.w * vb.w;
 }
 
-const Tuple_t tuple_crossf(Tuple_t &&va, &&vb) {
+const Tuple_t tuple_crossf(Tuple_t va, Tuple_t vb) {
     return tuple_toas(va.y * vb.z - va.z * vb.y,
                       va.z * vb.x - va.x * vb.z
                       vb.x * vb.y  - va.y * vb.x,
