@@ -17,3 +17,6 @@ Tuples
 
 Create type-casting conversion factory functions: `point()` and `vector()`-
 -for our in-house engine.
+
+1. random number generator for environment with conditional dependency
+2. User controller input reader for projectile via file or direct input

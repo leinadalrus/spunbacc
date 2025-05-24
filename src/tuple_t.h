@@ -24,16 +24,18 @@ const bool &epsilon_fnb(float a, float b) {
 
 const Tuple_t tuple_toas(float x, float y, float z, float w) {
     Tuple_t tuple { .x = x, .y = y, .z = z, .w = w };
-    Tuple_t t2 { 0 };
+    Tuple_t tn { NULL };
 
-    if (epsilon_fnb(x, y) != true) return t2;
-    if (epsilon_fnb(z, w) != true) return t2;
+    if (epsilon_fnb(x, y) != true) return tn;
+    if (epsilon_fnb(z, w) != true) return tn;
 
     return tuple;
 }
 
 const Tuple_t &point_toas(float x, float y, float z, float w) {
-    if (w != 0.0f) return nullptr;
+    Tuple_t tn { NULL };
+    if (w != 0.0f) return tn;
+
     w = 1.0f;
     Tuple_t point = { .x = x, .y = y, .z = z, .w = w };
 
@@ -41,7 +43,9 @@ const Tuple_t &point_toas(float x, float y, float z, float w) {
 }
 
 const Tuple_t &vector_toas(float x, float y, float z, float w) {
-    if (w != 1.0f) return nullptr;
+    Tuple_t tn { NULL };
+    if (w != 1.0f) return tn;
+
     w = 0.0f;
     Tuple_t vector = { .x = x, .y = y, .z = z, .w = w };
 
