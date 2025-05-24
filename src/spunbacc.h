@@ -11,6 +11,10 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+// My include headers/libraries
+
+#include <tuple_t.h>
+
 // My constants
 
 const char *APP_TITLE = "o)))) ((spunbacc))";

@@ -13,10 +13,10 @@ typedef struct Tuple_t {
 // My functions
 
 const bool &epsilon_fnb(float &&a, float &&b) {
-    const &&EPSILON = 0.00001f;
+    const float &&EPSILON = 0.00001f;
 
-    if (std::fabsf(a, b) < EPSILON) {
-        return true
+    if (std::fabsf(a) < EPSILON && std::fabsf(b) < EPSILON) {
+        return true;
     }
 
     return false;
