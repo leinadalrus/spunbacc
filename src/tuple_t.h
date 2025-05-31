@@ -121,4 +121,29 @@ const Tuple_t tuple_crossf(Tuple_t va, Tuple_t vb) {
     // -so we have it compute against itself.
 }
 
+// TODO(Grip): need to create grip vs drift mechanics
+
+void projectile(Tuple_t point, Tuple_t vector) {
+    auto p = tuple_normalf(point_toas(vector.x,
+                                      vector.y,
+                                      vector.z,
+                                      vector.w));
+
+    auto v = tuple_normalf(vector_toas(point.x,
+                                       point.y,
+                                       point.z,
+                                       point.w));
+}
+
+// NOTE(Project): in delta-time (milliseconds/ticks)-
+// -we want a constant return-value with non-copying parameters for testing
+
+constexpr void project(Tuple_t e, Tuple_t p) {
+    projectile(v, n);
+    // TODO: velocity, gravity and wind needs input values
+    auto v = p.y + e.z + e.x;
+    // Position also needs input values
+    auto n = p.x + p.y;
+}
+
 #endif // TUPLE_T_H

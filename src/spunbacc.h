@@ -18,10 +18,18 @@
 // My constants
 
 const char *APP_TITLE = "o)))) ((spunbacc))";
-const int SCREEN_WIDTH = 532;
-const int SCREEN_HEIGHT = 440;
+const int VIRTUAL_VOLUME = 320;
+const int WINDOW_HEIGHT = 440;
+const int WINDOW_WIDTH = 532;
 
 // My classes
+enum class KeyPressedSurfaces {
+    KEY_PRESSED_SURFACE_DEFAULT,
+    KEY_PRESSED_SURFACE_UP,
+    KEY_PRESSED_SURFACE_DOWN,
+    KEY_PRESSED_SURFACE_LEFT,
+    KEY_PRESSED_SURFACE_RIGHT,
+};
 
 class ColourKeyTexturee {
     SDL_Renderer *renderer;
@@ -38,12 +46,27 @@ class ColourKeyTexturee {
     void render_texture(int x, int y);
 };
 
-enum class KeyPressedSurfaces {
-    KEY_PRESSED_SURFACE_DEFAULT,
-    KEY_PRESSED_SURFACE_UP,
-    KEY_PRESSED_SURFACE_DOWN,
-    KEY_PRESSED_SURFACE_LEFT,
-    KEY_PRESSED_SURFACE_RIGHT,
+class VehicleActor {
+    float x;
+    float y;
+    float z;
+
+    int volume;
+    int height;
+    int width;
+
+    float dx_velocity;
+    float dy_velocity;
+    float dz_velocity;
+
+    SDL_Rect hitbox;
+
+  public:
+    VehicleActor() {}
+
+    void handle_vehicle(SDL_Event &event);
+    void move_vehicle(SDL_Rect &collision);
+    int check_collision(SDL_Rect a, SDL_Rect b);
 };
 
 class EngineModule {
