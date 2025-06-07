@@ -22,6 +22,11 @@ const int VIRTUAL_VOLUME = 320;
 const int WINDOW_HEIGHT = 440;
 const int WINDOW_WIDTH = 532;
 
+const float ACCELERATION = 0.05f;
+const float FRICTION = 0.02f;
+const float MAX_SPEED = 1.0f;
+const float STEER_SPEED = 1.0f;
+
 // My classes
 enum class KeyPressedSurfaces {
     KEY_PRESSED_SURFACE_DEFAULT,
@@ -48,16 +53,16 @@ class ColourKeyTexturee {
 
 class VehicleActor {
     float x;
-    float y;
-    float z;
+    float y; // angle
+    float z; // current height
 
     int volume;
     int height;
     int width;
 
-    float dx_velocity;
-    float dy_velocity;
-    float dz_velocity;
+    float dx_velocity; // steer
+    float dy_velocity; // speed
+    float dz_velocity; // jump and drop speed and dictation
 
     SDL_Rect hitbox;
 

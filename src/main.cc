@@ -1,5 +1,7 @@
 #include <spunbacc.h>
 
+// TODO(Local): create a local angular-velocity/directional system against a global one
+
 VehicleActor::VehicleActor() {
     z = 0.0f;
     y = 0.0f;
@@ -16,6 +18,9 @@ VehicleActor::VehicleActor() {
     hitbox.h = height;
     hitbox.w = width;
 }
+
+// TODO(AngularVelocity): is only dictated by a single directional input-
+// -this is a car after all
 
 void VehicleActor::handle_vehicle(SDL_Event &event) {
     if (event.type == SDL_KEYDOWN && event.key.repeat == 0) {
